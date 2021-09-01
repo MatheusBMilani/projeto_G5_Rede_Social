@@ -9,10 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sun.istack.NotNull;
 
 @Entity
 @Table
@@ -22,15 +22,15 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@NotNull
+	@NotBlank
 	@Size(min = 3, max = 50)
 	private String nome;
 
-	@NotNull
+	@NotBlank
 	@Size(min = 6, max = 100)
-	private int senha;
+	private String senha;
 
-	@NotNull
+	@NotBlank
 	private String email;
 	
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
@@ -53,11 +53,11 @@ public class Usuario {
 		this.nome = nome;
 	}
 
-	public int getSenha() {
+	public String getSenha() {
 		return senha;
 	}
 
-	public void setSenha(int senha) {
+	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 
