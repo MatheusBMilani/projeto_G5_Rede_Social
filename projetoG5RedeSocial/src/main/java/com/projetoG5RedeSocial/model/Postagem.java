@@ -10,24 +10,24 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
 
 @Entity
-@Table
+@Table(name = "Postagem")
 public class Postagem {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@NotBlank
+	@NotNull
 	@Size(min = 5, max = 100)
 	private String titulo;
 
-	@NotBlank
+	@NotNull
 	@Size(min = 1, max = 1000)
 	private String texto;
 
@@ -37,12 +37,10 @@ public class Postagem {
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Tema tema;
-	
-	@ManyToOne
-	@JsonIgnoreProperties("postagem")
-	private Usuario usuario;
-	
-	
+
+	@Size(min = 1, max = 1000)
+	private String comentario;
+
 	public long getId() {
 		return id;
 	}
@@ -83,12 +81,12 @@ public class Postagem {
 		this.tema = tema;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public String getComentario() {
+		return comentario;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setComentario(String comentario) {
+		this.comentario = comentario;
 	}
 
 }
