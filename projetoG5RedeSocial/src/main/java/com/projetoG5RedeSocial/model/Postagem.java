@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
 @Entity
-@Table(name = "Postagem")
+@Table(name = "tb_postagem")
 public class Postagem {
 
 	@Id
@@ -33,14 +33,16 @@ public class Postagem {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date = new java.sql.Date(System.currentTimeMillis());
-
+	
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Tema tema;
-
-	@Size(min = 1, max = 1000)
-	private String comentario;
-
+	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Usuario usuario;
+	
+	
 	public long getId() {
 		return id;
 	}
@@ -81,12 +83,13 @@ public class Postagem {
 		this.tema = tema;
 	}
 
-	public String getComentario() {
-		return comentario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setComentario(String comentario) {
-		this.comentario = comentario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
-
+	
+	
 }
