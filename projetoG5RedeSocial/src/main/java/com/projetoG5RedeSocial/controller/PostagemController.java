@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin("*")
 public class PostagemController {
 
-	@Autowired
+	@Autowired	
 	private PostagemRepository repository;
 
 	@GetMapping
